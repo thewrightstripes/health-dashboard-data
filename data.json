@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T17:44:48.939928+00:00",
+ "generated_at": "2026-11-14T19:44:47.868133+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2303,10 +2303,34 @@
   {
    "date": "2026-11-14",
    "burn_complete": false,
-   "intake": null,
-   "meals": [],
-   "burn_total": 332,
-   "burn_active": 23,
+   "intake": {
+    "cal": 1390,
+    "protein": 79,
+    "carbs": 85,
+    "fat": 76
+   },
+   "meals": [
+    {
+     "time": "08:00",
+     "type": "breakfast",
+     "summary": "Cappuccino, double (standing usual)",
+     "cal": 110,
+     "protein": 6,
+     "carbs": 13,
+     "fat": 2
+    },
+    {
+     "time": "10:40",
+     "type": "brunch",
+     "summary": "Emerald City Scramble (Geraldine's Counter); Grilled sourdough toast, 2 slices; Chicken sausage links, 2",
+     "cal": 1280,
+     "protein": 73,
+     "carbs": 72,
+     "fat": 74
+    }
+   ],
+   "burn_total": 554,
+   "burn_active": 152,
    "weight_lb": null
   }
  ],
@@ -127798,6 +127822,16 @@
    [
     6,
     76,
+    102
+   ],
+   [
+    9,
+    68,
+    126
+   ],
+   [
+    10,
+    73,
     102
    ]
   ]
