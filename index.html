@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Dashboard — Paul Wright</title>
+<style>
+  :root{
+    --bg:#0f1419; --card:#1a222c; --card2:#212b36; --ink:#e8eef4; --dim:#9db0c1;
+    --line:#2c3947; --intake:#f0a04b; --burn:#4db6e2; --good:#58c184; --bad:#e26d5a;
+    --protein:#e26d5a; --carbs:#f0a04b; --fat:#7d9b76; --accent:#58c184;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+  header h1{font-size:26px;margin:4px 0 2px}
+  header p{color:var(--dim);margin:2px 0 0;font-size:14px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .stat .k{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+  .stat .v{font-size:24px;font-weight:700;margin-top:4px}
+  .stat .s{font-size:12px;color:var(--dim);margin-top:2px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+  section h2{font-size:18px;margin:0 0 4px}
+  section .sub{color:var(--dim);font-size:13px;margin:0 0 10px}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  button{background:var(--card2);color:var(--ink);border:1px solid var(--line);
+    border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
+  button.on{border-color:var(--accent);color:var(--accent)}
+  select,input{background:var(--card2);color:var(--ink);border:1px solid var(--line);
+    border-radius:8px;padding:7px 9px;font-size:14px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+  th{color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .wk{border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0;background:var(--card2)}
+  .wk h3{margin:0 0 2px;font-size:15px;text-transform:capitalize}
+  .wk .meta{color:var(--dim);font-size:13px;margin-bottom:6px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--dim);margin:6px 0}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  form.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+  form.grid label{font-size:12px;color:var(--dim);display:block}
+  form.grid input{width:100%;margin-top:4px}
+  .note{font-size:12px;color:var(--dim);margin-top:8px;line-height:1.5}
+  footer{color:var(--dim);font-size:12px;line-height:1.6;margin-top:22px}
+  svg text{fill:var(--dim);font-size:10px}
+  .pos{color:var(--bad)} .neg{color:var(--good)}
+  @media (max-width:560px){ .stat .v{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Health Dashboard</h1>
+  <p>Meals, energy balance, workouts and body composition — Paul Wright</p>
+  <p id="updated">Loading data…</p>
+</header>
+
+<div class="cards" id="statCards"></div>
+
+<section>
+  <h2>Energy balance</h2>
+  <p class="sub">Calories eaten vs total calories burned per day. Net = intake − burn (negative is a deficit). The line is the 7-day moving average of net. A day still syncing (burn incomplete) shows its intake only — it is excluded from net and the average until Health Connect catches up.</p>
+  <div class="row" id="rangeRow">
+    <button data-days="30">30 days</button>
+    <button data-days="60" class="on">60 days</button>
+    <button data-days="9999">All</button>
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--intake)"></span>Intake</span>
+    <span><span class="dot" style="background:var(--burn)"></span>Burned (total)</span>
+    <span><span class="dot" style="background:var(--accent)"></span>Net, 7-day average</span>
+  </div>
+  <div id="energyChart"></div>
+  <div id="netChart"></div>
+</section>
+
+<section>
+  <h2>Daily meals &amp; nutrients</h2>
+  <p class="sub">Pick a day to see every logged meal with its macros.</p>
+  <div class="row">
+    <select id="daySelect"></select>
+    <span id="daySummary" class="sub" style="margin:0"></span>
+  </div>
+  <div id="mealTable" style="margin-top:10px"></div>
+  <h3 style="font-size:15px;margin:18px 0 4px">Macronutrients per day (grams)</h3>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--protein)"></span>Protein</span>
+    <span><span class="dot" style="background:var(--carbs)"></span>Carbs</span>
+    <span><span class="dot" style="background:var(--fat)"></span>Fat</span>
+    <span>Protein target floor: 136 g</span>
+  </div>
+  <div id="macroChart"></div>
+</section>
+
+<section>
+  <h2>Workouts</h2>
+  <p class="sub">Workouts with a Google Health export get the full heart-rate graphic — the continuous curve colored by zone, exactly as in the Google Health app. Workouts without an export sit on that day's hourly-average curve with the session window shaded (Health Connect syncs only hourly averages to Muse). Per-workout energy from Health Connect is not shown — it reports implausibly low values (median 11 kcal); energy appears only when it comes from a Google Health export.</p>
+  <div id="workoutList"></div>
+  <button id="moreWorkouts">Show all workouts</button>
+</section>
+
+<section>
+  <h2>Weight</h2>
+  <p class="sub">Scale weigh-ins from Health Connect, in pounds. Body-scan days are marked.</p>
+  <div id="weightChart"></div>
+</section>
+
+<section>
+  <h2>Body composition</h2>
+  <p class="sub">InBody scans: weight, skeletal muscle mass (SMM), lean body mass (LBM), fat mass and body fat %.</p>
+  <div id="bodycompChart"></div>
+  <div id="bodycompTable" style="margin-top:10px"></div>
+  <h3 style="font-size:15px;margin:18px 0 6px">Add a reading</h3>
+  <form class="grid" id="bcForm">
+    <label>Date<input type="date" id="bcDate" required></label>
+    <label>Weight (lb)<input type="number" step="0.1" id="bcWeight" required></label>
+    <label>Body fat %<input type="number" step="0.1" id="bcBf"></label>
+    <label>Skeletal muscle (lb)<input type="number" step="0.1" id="bcSmm"></label>
+    <label>Lean body mass (lb)<input type="number" step="0.1" id="bcLbm"></label>
+    <label>Fat mass (lb)<input type="number" step="0.1" id="bcFat"></label>
+    <label>&nbsp;<button type="submit" style="width:100%">Add reading</button></label>
+  </form>
+  <p class="note">Readings added here save on this device and merge into the charts above. Paul: send Riker your InBody sheet and the scan joins the permanent record everyone sees.</p>
+</section>
+
+<footer id="foot"></footer>
+</div>
+
+<script>
+const DATA_SOURCES = [
+  "https://raw.githubusercontent.com/thewrightstripes/health-dashboard-data/main/data.json",
+  "https://cdn.jsdelivr.net/gh/thewrightstripes/health-dashboard-data@main/data.json",
+  "./data.json"
+];
+let D = null, rangeDays = 60, showAllWorkouts = false;
+
+const fmt = n => n == null ? "—" : Math.round(n).toLocaleString("en-US");
+const dayMs = 86400000;
+function parseDate(s){ return new Date(s + "T12:00:00"); }
+function netOf(d){ if(d.burn_complete === false) return null; return (d.intake && d.burn_total != null) ? d.intake.cal - d.burn_total : null; }
+
+// trailing 7-day moving average of net over days that have a net value
+function netMA(days){
+  const out = new Array(days.length).fill(null);
+  let win = [];
+  days.forEach((d,i)=>{
+    const n = netOf(d);
+    if(n != null){ win.push(n); if(win.length > 7) win.shift();
+      if(win.length >= 3) out[i] = win.reduce((a,b)=>a+b,0)/win.length; }
+  });
+  return out;
+}
+
+function svgEl(w,h){ return `<svg viewBox="0 0 ${w} ${h}" width="100%" role="img">`; }
+function axes(w,h,pl,pb,pt){ return {x0:pl, x1:w-8, y0:h-pb, y1:pt}; }
+
+function barChart(days){
+  const w=1020,h=260,pl=44,pb=22,pt=10, A=axes(w,h,pl,pb,pt);
+  const maxV = Math.max(3000, ...days.map(d=>Math.max(d.intake?d.intake.cal:0, d.burn_total||0)));
+  const bw = (A.x1-A.x0)/days.length;
+  let s = svgEl(w,h);
+  for(let g=0; g<=4; g++){ const v=maxV*g/4, y=A.y0-(A.y0-A.y1)*g/4;
+    s+=`<line x1="${A.x0}" y1="${y}" x2="${A.x1}" y2="${y}" stroke="#2c3947"/><text x="${A.x0-5}" y="${y+3}" text-anchor="end">${fmt(v)}</text>`; }
+  days.forEach((d,i)=>{
+    const x=A.x0+i*bw, bh=v=>Math.max(0,(A.y0-A.y1)*v/maxV);
+    if(d.intake) s+=`<rect x="${x+1}" y="${A.y0-bh(d.intake.cal)}" width="${Math.max(1,bw/2-2)}" height="${bh(d.intake.cal)}" fill="var(--intake)" opacity="0.9"><title>${d.date} intake ${fmt(d.intake.cal)}</title></rect>`;
+    if(d.burn_total!=null && d.burn_complete!==false) s+=`<rect x="${x+bw/2}" y="${A.y0-bh(d.burn_total)}" width="${Math.max(1,bw/2-2)}" height="${bh(d.burn_total)}" fill="var(--burn)" opacity="0.85"><title>${d.date} burned ${fmt(d.burn_total)}</title></rect>`;
+    if(i%Math.ceil(days.length/8)===0) s+=`<text x="${x+bw/2}" y="${h-6}" text-anchor="middle">${d.date.slice(5)}</text>`;
+  });
+  return s+"</svg>";
+}
+
+function netChart(days, ma){
+  const w=1020,h=170,pl=44,pb=22,pt=10, A=axes(w,h,pl,pb,pt);
+  const vals = days.map(netOf).filter(v=>v!=null).concat(ma.filter(v=>v!=null));
+  const mx = Math.max(600, ...vals.map(Math.abs));
+  const y = v => A.y0 - (v+mx)/(2*mx)*(A.y0-A.y1);
+  const bw=(A.x1-A.x0)/days.length;
+  let s=svgEl(w,h);
+  [-mx,0,mx].forEach(v=>{ s+=`<line x1="${A.x0}" y1="${y(v)}" x2="${A.x1}" y2="${y(v)}" stroke="#2c3947"/><text x="${A.x0-5}" y="${y(v)+3}" text-anchor="end">${v>0?"+":""}${fmt(v)}</text>`; });
+  days.forEach((d,i)=>{ const n=netOf(d); if(n==null) return;
+    const x=A.x0+i*bw, top=Math.min(y(0),y(n)), ht=Math.max(1,Math.abs(y(n)-y(0)));
+    s+=`<rect x="${x+1}" y="${top}" width="${Math.max(1,bw-2)}" height="${ht}" fill="${n<0?"var(--good)":"var(--bad)"}" opacity="0.75"><title>${d.date} net ${n>0?"+":""}${fmt(n)}</title></rect>`; });
+  let path="";
+  ma.forEach((v,i)=>{ if(v==null) return; const x=A.x0+i*bw+bw/2; path+=(path?"L":"M")+x.toFixed(1)+","+y(v).toFixed(1)+" "; });
+  if(path) s+=`<path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2"/>`;
+  days.forEach((d,i)=>{ if(i%Math.ceil(days.length/8)===0) s+=`<text x="${A.x0+i*bw+bw/2}" y="${h-6}" text-anchor="middle">${d.date.slice(5)}</text>`; });
+  return s+"</svg>";
+}
+
+function lineChart(series, days, opts={}){
+  const w=1020,h=240,pl=44,pb=22,pt=12, A=axes(w,h,pl,pb,pt);
+  const all = series.flatMap(s=>s.values).filter(v=>v!=null);
+  let mn=Math.min(...all), mx=Math.max(...all);
+  if(opts.floor!=null) mn=Math.min(mn,opts.floor);
+  const pad=(mx-mn)*0.12||1; mn-=pad; mx+=pad;
+  const X=i=>A.x0+(A.x1-A.x0)*(days.length===1?0.5:i/(days.length-1));
+  const Y=v=>A.y0-(v-mn)/(mx-mn)*(A.y0-A.y1);
+  let s=svgEl(w,h);
+  for(let g=0; g<=4; g++){ const v=mn+(mx-mn)*g/4, yy=Y(v);
+    s+=`<line x1="${A.x0}" y1="${yy}" x2="${A.x1}" y2="${yy}" stroke="#2c3947"/><text x="${A.x0-5}" y="${yy+3}" text-anchor="end">${Math.round(v)}</text>`; }
+  if(opts.floor!=null) s+=`<line x1="${A.x0}" y1="${Y(opts.floor)}" x2="${A.x1}" y2="${Y(opts.floor)}" stroke="#e8eef4" stroke-dasharray="4 4" opacity="0.5"/>`;
+  series.forEach(sr=>{
+    let path="";
+    sr.values.forEach((v,i)=>{ if(v==null) return; path+=(path?"L":"M")+X(i).toFixed(1)+","+Y(v).toFixed(1)+" "; });
+    if(path) s+=`<path d="${path}" fill="none" stroke="${sr.color}" stroke-width="2"/>`;
+    sr.values.forEach((v,i)=>{ if(v!=null && (sr.dots || days.length<40)) s+=`<circle cx="${X(i)}" cy="${Y(v)}" r="2.4" fill="${sr.color}"><title>${days[i].date}: ${v}</title></circle>`; });
+  });
+  days.forEach((d,i)=>{ if(i%Math.ceil(days.length/8)===0) s+=`<text x="${X(i)}" y="${h-6}" text-anchor="middle">${d.date.slice(5)}</text>`; });
+  return s+"</svg>";
+}
+
+function hrChart(wk){
+  const hrs = (D.hr_days[wk.date]||[]);
+  const w=1020,h=170,pl=36,pb=20,pt=10, A=axes(w,h,pl,pb,pt);
+  const X=hh=>A.x0+(A.x1-A.x0)*hh/24, Y=v=>A.y0-(v-30)/(200-30)*(A.y0-A.y1);
+  let s=svgEl(w,h);
+  [50,100,150,200].forEach(v=>{ s+=`<line x1="${A.x0}" y1="${Y(v)}" x2="${A.x1}" y2="${Y(v)}" stroke="#2c3947"/><text x="${A.x0-4}" y="${Y(v)+3}" text-anchor="end">${v}</text>`; });
+  const sh=parseInt(wk.start), eh=parseInt(wk.end);
+  s+=`<rect x="${X(sh)}" y="${A.y1}" width="${Math.max(3,X(eh+1)-X(sh))}" height="${A.y0-A.y1}" fill="#58c184" opacity="0.13"/>`;
+  let path="";
+  hrs.forEach(([hh,avg])=>{ path+=(path?"L":"M")+X(hh+0.5).toFixed(1)+","+Y(avg).toFixed(1)+" "; });
+  if(path) s+=`<path d="${path}" fill="none" stroke="var(--burn)" stroke-width="2"/>`;
+  hrs.forEach(([hh,avg,mx])=>{ s+=`<circle cx="${X(hh+0.5)}" cy="${Y(avg)}" r="2.2" fill="var(--burn)"><title>${String(hh).padStart(2,"0")}:00 avg ${avg} bpm${mx?", max "+mx:""}</title></circle>`; });
+  if(wk.hr_avg) s+=`<line x1="${A.x0}" y1="${Y(wk.hr_avg)}" x2="${A.x1}" y2="${Y(wk.hr_avg)}" stroke="var(--intake)" stroke-dasharray="4 4" opacity="0.8"/>`;
+  for(let hh=0; hh<=24; hh+=4) s+=`<text x="${X(hh)}" y="${h-5}" text-anchor="middle">${String(hh).padStart(2,"0")}</text>`;
+  return s+"</svg>";
+}
+
+function localScans(){
+  try{ return JSON.parse(localStorage.getItem("bodycomp_local")||"[]"); }catch(e){ return []; }
+}
+function allScans(){
+  const base = D.bodycomp.map(s=>({...s, local:false}));
+  const loc = localScans().map(s=>({...s, local:true}));
+  return base.concat(loc).sort((a,b)=>a.date<b.date?-1:1);
+}
+
+function render(){
+  const days = D.days;
+  const todayStr = days.length ? days[days.length-1].date : null;
+  const ma = netMA(days);
+  // stat cards — intake is the latest day (meals are logged in full);
+  // burned + net use the last day whose burn is complete, so a still-syncing
+  // day (e.g. burn 513 on 6 hours of HR) never shows as a huge surplus.
+  const last = days[days.length-1] || {};
+  const lastComplete = [...days].reverse().find(d=>netOf(d)!=null) || {};
+  const recent = days.slice(-7);
+  const lastMA = [...ma].reverse().find(v=>v!=null);
+  const wts = days.filter(d=>d.weight_lb!=null);
+  const lastWt = wts.length ? wts[wts.length-1] : null;
+  const scans = allScans();
+  const lastScan = scans.length ? scans[scans.length-1] : null;
+  const netToday = netOf(lastComplete);
+  document.getElementById("statCards").innerHTML = `
+    <div class="stat"><div class="k">Latest day intake</div><div class="v">${last.intake?fmt(last.intake.cal):"—"}</div><div class="s">${last.date||""} · target ${fmt(D.targets.cal)}${last.burn_complete===false?" · burn still syncing":""}</div></div>
+    <div class="stat"><div class="k">Latest day burned</div><div class="v">${fmt(lastComplete.burn_total)}</div><div class="s">${lastComplete.date||""} · total energy, Health Connect</div></div>
+    <div class="stat"><div class="k">Net (latest complete day)</div><div class="v ${netToday==null?"":(netToday<0?"neg":"pos")}">${netToday==null?"—":(netToday>0?"+":"")+fmt(netToday)}</div><div class="s">${lastComplete.date||""} · intake − burn</div></div>
+    <div class="stat"><div class="k">Net, 7-day average</div><div class="v ${lastMA==null?"":(lastMA<0?"neg":"pos")}">${lastMA==null?"—":(lastMA>0?"+":"")+fmt(lastMA)}</div><div class="s">per day, trailing week</div></div>
+    <div class="stat"><div class="k">Weight</div><div class="v">${lastWt?lastWt.weight_lb+" lb":"—"}</div><div class="s">${lastWt?lastWt.date:""}</div></div>
+    <div class="stat"><div class="k">Body fat (last scan)</div><div class="v">${lastScan&&lastScan.body_fat_pct!=null?lastScan.body_fat_pct+"%":"—"}</div><div class="s">${lastScan?lastScan.date+" · goal "+D.targets.body_fat_goal_pct+"%":""}</div></div>`;
+  // range charts
+  const n = rangeDays>=9999 ? days.length : Math.min(rangeDays, days.length);
+  const view = days.slice(-n), viewMA = ma.slice(-n);
+  document.getElementById("energyChart").innerHTML = barChart(view);
+  document.getElementById("netChart").innerHTML = netChart(view, viewMA);
+  document.getElementById("macroChart").innerHTML = lineChart([
+    {color:"var(--protein)", values:view.map(d=>d.intake?d.intake.protein:null)},
+    {color:"var(--carbs)", values:view.map(d=>d.intake?d.intake.carbs:null)},
+    {color:"var(--fat)", values:view.map(d=>d.intake?d.intake.fat:null)},
+  ], view, {floor:D.targets.protein_floor_g});
+  // day select
+  const sel = document.getElementById("daySelect");
+  sel.innerHTML = days.slice().reverse().map(d=>`<option value="${d.date}">${d.date}</option>`).join("");
+  renderDay(sel.value || todayStr);
+  sel.onchange = ()=>renderDay(sel.value);
+  // workouts
+  renderWorkouts();
+  // weight chart
+  const wDays = days.filter(d=>d.weight_lb!=null);
+  const scanDates = new Set(scans.map(s=>s.date));
+  document.getElementById("weightChart").innerHTML = wDays.length ? lineChart([
+    {color:"var(--burn)", values:wDays.map(d=>d.weight_lb), dots:true},
+  ], wDays) + (scanDates.size?`<p class="note">Scan days in this window: ${wDays.filter(d=>scanDates.has(d.date)).map(d=>d.date).join(", ")||"none"}</p>`:"") : "<p class='sub'>No weigh-ins yet.</p>";
+  // body comp
+  const sc = scans;
+  if(sc.length){
+    const asDays = sc.map(s=>({date:s.date}));
+    document.getElementById("bodycompChart").innerHTML = lineChart([
+      {color:"var(--burn)", values:sc.map(s=>s.weight_lb), dots:true},
+      {color:"var(--accent)", values:sc.map(s=>s.skeletal_muscle_lb), dots:true},
+      {color:"var(--intake)", values:sc.map(s=>s.lean_body_mass_lb), dots:true},
+      {color:"var(--protein)", values:sc.map(s=>s.fat_mass_lb), dots:true},
+    ], asDays) + `<div class="legend">
+      <span><span class="dot" style="background:var(--burn)"></span>Weight</span>
+      <span><span class="dot" style="background:var(--accent)"></span>Skeletal muscle</span>
+      <span><span class="dot" style="background:var(--intake)"></span>Lean body mass</span>
+      <span><span class="dot" style="background:var(--protein)"></span>Fat mass</span></div>`;
+    document.getElementById("bodycompTable").innerHTML = `<table><tr><th>Date</th><th class="num">Weight</th><th class="num">Body fat %</th><th class="num">Fat mass</th><th class="num">Skeletal muscle</th><th class="num">Lean mass</th><th></th></tr>${
+      sc.map((s,i)=>`<tr><td>${s.date}${s.local?" (this device)":""}</td><td class="num">${s.weight_lb??"—"}</td><td class="num">${s.body_fat_pct??"—"}</td><td class="num">${s.fat_mass_lb??"—"}</td><td class="num">${s.skeletal_muscle_lb??"—"}</td><td class="num">${s.lean_body_mass_lb??"—"}</td><td class="num">${s.local?`<button data-del="${s.date}|${s.weight_lb}">Delete</button>`:""}</td></tr>`).join("")}</table>`;
+    document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{
+      const [date,wt]=b.dataset.del.split("|");
+      const loc = localScans().filter(s=>!(s.date===date && String(s.weight_lb)===wt));
+      localStorage.setItem("bodycomp_local", JSON.stringify(loc)); render();
+    });
+  }
+  document.getElementById("foot").innerHTML =
+    `Sources: meals and nutrients from Paul's Muse nutrition log; burn, workouts, heart rate and scale weight from Health Connect on his phone. ${D.notes.burn_definition} ${D.notes.hr_resolution}<br>Data refreshed when the builder runs (automatic refresh not yet wired); this page and its data file are public — anyone with the link can view them.`;
+}
+
+function renderDay(date){
+  const d = D.days.find(x=>x.date===date); if(!d) return;
+  const n = netOf(d);
+  const burnTxt = d.burn_complete===false ? `burned ${fmt(d.burn_total)} (partial — still syncing)` : `burned ${fmt(d.burn_total)}`;
+  document.getElementById("daySummary").textContent =
+    d.intake ? `Intake ${fmt(d.intake.cal)} cal · protein ${fmt(d.intake.protein)} g · carbs ${fmt(d.intake.carbs)} g · fat ${fmt(d.intake.fat)} g · ${burnTxt} · net ${n==null?"—":(n>0?"+":"")+fmt(n)}` : "No meals logged this day.";
+  document.getElementById("mealTable").innerHTML = d.meals && d.meals.length ?
+    `<table><tr><th>Time</th><th>Meal</th><th class="num">Cal</th><th class="num">Protein</th><th class="num">Carbs</th><th class="num">Fat</th></tr>${
+      d.meals.map(m=>`<tr><td>${m.time||""}</td><td>${m.summary||m.type||""}</td><td class="num">${fmt(m.cal)}</td><td class="num">${fmt(m.protein)}</td><td class="num">${fmt(m.carbs)}</td><td class="num">${fmt(m.fat)}</td></tr>`).join("")}</table>`
+    : "";
+}
+
+const ZONE_COLORS = {light:"#4fc3f7", moderate:"#81c784", vigorous:"#ffb74d", peak:"#ef5350"};
+function zoneOf(bpm){ return bpm>=161?"peak":bpm>=130?"vigorous":bpm>=92?"moderate":"light"; }
+
+// Full-resolution zone chart, modeled on Google Health's workout screen:
+// continuous HR curve colored by zone, dotted zone thresholds labeled at right.
+function zoneChart(wk){
+  const pts = wk.hr_series; if(!pts || !pts.length) return "";
+  const w=1020,h=250,pl=14,pr=40,pb=22,pt=12;
+  const maxT = pts[pts.length-1][0] || 1;
+  const X=t=>pl+(w-pl-pr)*t/maxT, Y=v=>pt+(190-v)/(190-30)*(h-pb-pt);
+  let s=svgEl(w,h);
+  [104,130,161].forEach(v=>{ s+=`<line x1="${pl}" y1="${Y(v)}" x2="${w-pr+6}" y2="${Y(v)}" stroke="${ZONE_COLORS[zoneOf(v)]}" stroke-dasharray="2 5" opacity="0.65"/>`; });
+  [30,71,104,130,161,181].forEach(v=>{ s+=`<text x="${w-pr+12}" y="${Y(v)+3}">${v}</text>`; });
+  for(let i=1;i<pts.length;i++){
+    const [t0,v0]=pts[i-1], [t1,v1]=pts[i];
+    s+=`<line x1="${X(t0).toFixed(1)}" y1="${Y(v0).toFixed(1)}" x2="${X(t1).toFixed(1)}" y2="${Y(v1).toFixed(1)}" stroke="${ZONE_COLORS[zoneOf(Math.round((v0+v1)/2))]}" stroke-width="2"/>`;
+  }
+  s+=`<text x="${pl}" y="${h-5}">${wk.start}</text><text x="${w-pr}" y="${h-5}" text-anchor="end">${wk.end}</text>`;
+  return s+"</svg>";
+}
+
+function zoneLine(wk){
+  const z = wk.zone_minutes; if(!z) return "";
+  const parts = [];
+  if(z.moderate) parts.push(`${z.moderate} min in the moderate zone`);
+  const vp = (z.vigorous||0)+(z.peak||0);
+  if(vp) parts.push(`${vp} min in vigorous and peak zones`);
+  if(z.light) parts.push(`${z.light} min light`);
+  return parts.length ? `<div class="meta">You spent ${parts.join(", and ")}.</div>` : "";
+}
+
+function renderWorkouts(){
+  const list = showAllWorkouts ? D.workouts : D.workouts.slice(0,12);
+  document.getElementById("workoutList").innerHTML = list.map(wk=>{
+    const full = wk.hr_series && wk.hr_series.length;
+    const bits = [`${wk.date} · ${wk.start}–${wk.end} · ${wk.dur_min??"—"} min`];
+    if(wk.tcx_kcal) bits.push(`${fmt(wk.tcx_kcal)} cal (Google Health export)`);
+    if(wk.distance_m) bits.push(`${(wk.distance_m/1609.34).toFixed(2)} mi`);
+    bits.push(`HR avg ${wk.hr_avg??"—"} · max ${wk.hr_max??"—"} bpm`);
+    return `
+    <div class="wk">
+      <h3>${wk.type||"Workout"}${full?" · full heart-rate detail":""}</h3>
+      <div class="meta">${bits.join(" · ")}</div>
+      ${full ? zoneLine(wk) + zoneChart(wk) + `<div class="legend">
+        <span><span class="dot" style="background:${ZONE_COLORS.light}"></span>Light</span>
+        <span><span class="dot" style="background:${ZONE_COLORS.moderate}"></span>Moderate</span>
+        <span><span class="dot" style="background:${ZONE_COLORS.vigorous}"></span>Vigorous</span>
+        <span><span class="dot" style="background:${ZONE_COLORS.peak}"></span>Peak</span></div>`
+             : hrChart(wk)}
+    </div>`;}).join("");
+  document.getElementById("moreWorkouts").style.display = showAllWorkouts ? "none" : "";
+}
+
+document.getElementById("moreWorkouts").onclick = ()=>{ showAllWorkouts=true; renderWorkouts(); };
+document.querySelectorAll("#rangeRow button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#rangeRow button").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on"); rangeDays = parseInt(b.dataset.days); render();
+});
+document.getElementById("bcForm").onsubmit = e=>{
+  e.preventDefault();
+  const v = id => { const x=document.getElementById(id).value; return x===""?null:parseFloat(x); };
+  const entry = { date: document.getElementById("bcDate").value, weight_lb: v("bcWeight"),
+    body_fat_pct: v("bcBf"), skeletal_muscle_lb: v("bcSmm"), lean_body_mass_lb: v("bcLbm"), fat_mass_lb: v("bcFat") };
+  if(!entry.date || entry.weight_lb==null) return;
+  const loc = localScans(); loc.push(entry);
+  localStorage.setItem("bodycomp_local", JSON.stringify(loc));
+  e.target.reset(); render();
+};
+
+(async ()=>{
+  for(const src of DATA_SOURCES){
+    try{ const r = await fetch(src, {cache:"no-store"}); if(r.ok){ D = await r.json(); break; } }catch(e){}
+  }
+  if(!D){ document.getElementById("updated").textContent = "Could not load dashboard data."; return; }
+  document.getElementById("updated").textContent = "Data updated " + new Date(D.generated_at).toLocaleString("en-US",{timeZone:D.timezone}) + " PT";
+  render();
+})();
+</script>
+</body>
+</html>
