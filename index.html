@@ -46,6 +46,14 @@
   footer{color:var(--dim);font-size:12px;line-height:1.6;margin-top:22px}
   svg text{fill:var(--dim);font-size:10px}
   .pos{color:var(--bad)} .neg{color:var(--good)}
+  .stat.clickable{cursor:pointer}
+  .stat.clickable:hover{border-color:var(--accent)}
+  .mealgroup{margin:14px 0 4px}
+  .mealgroup h4{margin:0 0 2px;font-size:15px;text-transform:capitalize}
+  .mealgroup h4 .mt{color:var(--dim);font-weight:400;font-size:13px;text-transform:none}
+  .mealgroup h4 .mtot{color:var(--dim);font-weight:400;font-size:13px;text-transform:none;float:right}
+  ul.foods{margin:2px 0 0;padding-left:20px}
+  ul.foods li{margin:3px 0;line-height:1.45}
   @media (max-width:560px){ .stat .v{font-size:20px} }
 </style>
 </head>
@@ -61,7 +69,7 @@
 
 <section>
   <h2>Energy balance</h2>
-  <p class="sub">Calories eaten vs total calories burned per day. Net = intake − burn (negative is a deficit). The line is the 7-day moving average of net. A day still syncing (burn incomplete) shows its intake only — it is excluded from net and the average until Health Connect catches up.</p>
+  <p class="sub">Calories eaten vs total calories burned per day. Net = intake − burn (negative is a deficit). The line is the 7-day moving average of net. A day still syncing (burn incomplete) shows its intake only — it is excluded from net and the average until Health Connect catches up. <strong>Tap any intake or net bar to jump to that day's food summary — what was actually eaten.</strong></p>
   <div class="row" id="rangeRow">
     <button data-days="30">30 days</button>
     <button data-days="60" class="on">60 days</button>
@@ -76,9 +84,9 @@
   <div id="netChart"></div>
 </section>
 
-<section>
+<section id="mealsSection">
   <h2>Daily meals &amp; nutrients</h2>
-  <p class="sub">Pick a day to see every logged meal with its macros.</p>
+  <p class="sub">What was eaten, grouped by meal, with the day's totals at the top — the same food names as the daily food log. Pick a day here, or tap a bar in the charts above.</p>
   <div class="row">
     <select id="daySelect"></select>
     <span id="daySummary" class="sub" style="margin:0"></span>
@@ -137,6 +145,17 @@ const DATA_SOURCES = [
 let D = null, rangeDays = 60, showAllWorkouts = false;
 
 const fmt = n => n == null ? "—" : Math.round(n).toLocaleString("en-US");
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+// Clicking a day's food numbers (intake/net bars, latest-intake card) lands here:
+// select the day, render its food summary, and scroll it into view.
+function showDay(date){
+  if(!date) return;
+  const sel = document.getElementById("daySelect");
+  if(sel) sel.value = date;
+  renderDay(date);
+  const sec = document.getElementById("mealsSection");
+  if(sec) sec.scrollIntoView({behavior:"smooth", block:"start"});
+}
 const dayMs = 86400000;
 function parseDate(s){ return new Date(s + "T12:00:00"); }
 function netOf(d){ if(d.burn_complete === false) return null; return (d.intake && d.burn_total != null) ? d.intake.cal - d.burn_total : null; }
@@ -165,7 +184,7 @@ function barChart(days){
     s+=`<line x1="${A.x0}" y1="${y}" x2="${A.x1}" y2="${y}" stroke="#2c3947"/><text x="${A.x0-5}" y="${y+3}" text-anchor="end">${fmt(v)}</text>`; }
   days.forEach((d,i)=>{
     const x=A.x0+i*bw, bh=v=>Math.max(0,(A.y0-A.y1)*v/maxV);
-    if(d.intake) s+=`<rect x="${x+1}" y="${A.y0-bh(d.intake.cal)}" width="${Math.max(1,bw/2-2)}" height="${bh(d.intake.cal)}" fill="var(--intake)" opacity="0.9"><title>${d.date} intake ${fmt(d.intake.cal)}</title></rect>`;
+    if(d.intake) s+=`<rect x="${x+1}" y="${A.y0-bh(d.intake.cal)}" width="${Math.max(1,bw/2-2)}" height="${bh(d.intake.cal)}" fill="var(--intake)" opacity="0.9" style="cursor:pointer" onclick="showDay('${d.date}')"><title>${d.date} intake ${fmt(d.intake.cal)} — tap to see what was eaten</title></rect>`;
     if(d.burn_total!=null && d.burn_complete!==false) s+=`<rect x="${x+bw/2}" y="${A.y0-bh(d.burn_total)}" width="${Math.max(1,bw/2-2)}" height="${bh(d.burn_total)}" fill="var(--burn)" opacity="0.85"><title>${d.date} burned ${fmt(d.burn_total)}</title></rect>`;
     if(i%Math.ceil(days.length/8)===0) s+=`<text x="${x+bw/2}" y="${h-6}" text-anchor="middle">${d.date.slice(5)}</text>`;
   });
@@ -182,7 +201,7 @@ function netChart(days, ma){
   [-mx,0,mx].forEach(v=>{ s+=`<line x1="${A.x0}" y1="${y(v)}" x2="${A.x1}" y2="${y(v)}" stroke="#2c3947"/><text x="${A.x0-5}" y="${y(v)+3}" text-anchor="end">${v>0?"+":""}${fmt(v)}</text>`; });
   days.forEach((d,i)=>{ const n=netOf(d); if(n==null) return;
     const x=A.x0+i*bw, top=Math.min(y(0),y(n)), ht=Math.max(1,Math.abs(y(n)-y(0)));
-    s+=`<rect x="${x+1}" y="${top}" width="${Math.max(1,bw-2)}" height="${ht}" fill="${n<0?"var(--good)":"var(--bad)"}" opacity="0.75"><title>${d.date} net ${n>0?"+":""}${fmt(n)}</title></rect>`; });
+    s+=`<rect x="${x+1}" y="${top}" width="${Math.max(1,bw-2)}" height="${ht}" fill="${n<0?"var(--good)":"var(--bad)"}" opacity="0.75" style="cursor:pointer" onclick="showDay('${d.date}')"><title>${d.date} net ${n>0?"+":""}${fmt(n)} — tap to see what was eaten</title></rect>`; });
   let path="";
   ma.forEach((v,i)=>{ if(v==null) return; const x=A.x0+i*bw+bw/2; path+=(path?"L":"M")+x.toFixed(1)+","+y(v).toFixed(1)+" "; });
   if(path) s+=`<path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2"/>`;
@@ -255,7 +274,7 @@ function render(){
   const lastScan = scans.length ? scans[scans.length-1] : null;
   const netToday = netOf(lastComplete);
   document.getElementById("statCards").innerHTML = `
-    <div class="stat"><div class="k">Latest day intake</div><div class="v">${last.intake?fmt(last.intake.cal):"—"}</div><div class="s">${last.date||""} · target ${fmt(D.targets.cal)}${last.burn_complete===false?" · burn still syncing":""}</div></div>
+    <div class="stat clickable" onclick="showDay('${last.date}')" title="Tap to see the day's foods"><div class="k">Latest day intake</div><div class="v">${last.intake?fmt(last.intake.cal):"—"}</div><div class="s">${last.date||""} · target ${fmt(D.targets.cal)}${last.burn_complete===false?" · burn still syncing":""} · tap for foods</div></div>
     <div class="stat"><div class="k">Latest day burned</div><div class="v">${fmt(lastComplete.burn_total)}</div><div class="s">${lastComplete.date||""} · total energy, Health Connect</div></div>
     <div class="stat"><div class="k">Net (latest complete day)</div><div class="v ${netToday==null?"":(netToday<0?"neg":"pos")}">${netToday==null?"—":(netToday>0?"+":"")+fmt(netToday)}</div><div class="s">${lastComplete.date||""} · intake − burn</div></div>
     <div class="stat"><div class="k">Net, 7-day average</div><div class="v ${lastMA==null?"":(lastMA<0?"neg":"pos")}">${lastMA==null?"—":(lastMA>0?"+":"")+fmt(lastMA)}</div><div class="s">per day, trailing week</div></div>
@@ -315,11 +334,29 @@ function renderDay(date){
   const n = netOf(d);
   const burnTxt = d.burn_complete===false ? `burned ${fmt(d.burn_total)} (partial — still syncing)` : `burned ${fmt(d.burn_total)}`;
   document.getElementById("daySummary").textContent =
-    d.intake ? `Intake ${fmt(d.intake.cal)} cal · protein ${fmt(d.intake.protein)} g · carbs ${fmt(d.intake.carbs)} g · fat ${fmt(d.intake.fat)} g · ${burnTxt} · net ${n==null?"—":(n>0?"+":"")+fmt(n)}` : "No meals logged this day.";
-  document.getElementById("mealTable").innerHTML = d.meals && d.meals.length ?
-    `<table><tr><th>Time</th><th>Meal</th><th class="num">Cal</th><th class="num">Protein</th><th class="num">Carbs</th><th class="num">Fat</th></tr>${
-      d.meals.map(m=>`<tr><td>${m.time||""}</td><td>${m.summary||m.type||""}</td><td class="num">${fmt(m.cal)}</td><td class="num">${fmt(m.protein)}</td><td class="num">${fmt(m.carbs)}</td><td class="num">${fmt(m.fat)}</td></tr>`).join("")}</table>`
-    : "";
+    d.intake ? `Day total: ${fmt(d.intake.cal)} cal · protein ${fmt(d.intake.protein)} g · carbs ${fmt(d.intake.carbs)} g · fat ${fmt(d.intake.fat)} g · ${burnTxt} · net ${n==null?"—":(n>0?"+":"")+fmt(n)}` : "No meals logged this day.";
+  const mt = document.getElementById("mealTable");
+  if(!d.meals || !d.meals.length){ mt.innerHTML = ""; return; }
+  // Group consecutive meals of the same type (breakfast, snack, lunch,
+  // dinner…) in time order. Each food in a meal's summary is one line —
+  // the same names as the daily food log / trainer summary.
+  let html = "", i = 0;
+  const meals = d.meals;
+  while(i < meals.length){
+    const type = meals[i].type || "meal";
+    const group = [];
+    while(i < meals.length && (meals[i].type || "meal") === type){ group.push(meals[i]); i++; }
+    const sum = k => group.reduce((a,m)=>a+(m[k]||0),0);
+    const times = group.map(m=>m.time).filter(Boolean).join(", ");
+    html += `<div class="mealgroup"><h4>${esc(type)}${times?` <span class="mt">${esc(times)}</span>`:""}<span class="mtot">${fmt(sum("cal"))} cal · protein ${fmt(sum("protein"))} g · carbs ${fmt(sum("carbs"))} g · fat ${fmt(sum("fat"))} g</span></h4><ul class="foods">`;
+    group.forEach(m=>{
+      const items = (m.summary || "").split(/;\s*/).filter(Boolean);
+      if(items.length) items.forEach(it=>{ html += `<li>${esc(it)}</li>`; });
+      else html += `<li>${esc(m.type || "Meal")}</li>`;
+    });
+    html += `</ul></div>`;
+  }
+  mt.innerHTML = html;
 }
 
 const ZONE_COLORS = {light:"#4fc3f7", moderate:"#81c784", vigorous:"#ffb74d", peak:"#ef5350"};
