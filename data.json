@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T13:44:47.170133+00:00",
+ "generated_at": "2026-11-14T15:44:50.100016+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -1930,7 +1930,7 @@
      "fat": 38
     }
    ],
-   "burn_total": 2043,
+   "burn_total": 2025,
    "burn_active": 419,
    "weight_lb": 159.0
   },
@@ -1972,7 +1972,7 @@
      "fat": 14
     }
    ],
-   "burn_total": 2982,
+   "burn_total": 2997,
    "burn_active": 841,
    "weight_lb": null
   },
@@ -2032,7 +2032,7 @@
      "fat": 30
     }
    ],
-   "burn_total": 2539,
+   "burn_total": 2555,
    "burn_active": 694,
    "weight_lb": null
   },
@@ -2101,7 +2101,7 @@
      "fat": 27
     }
    ],
-   "burn_total": 3041,
+   "burn_total": 3055,
    "burn_active": 547,
    "weight_lb": null
   },
@@ -2152,7 +2152,7 @@
      "fat": 24
     }
    ],
-   "burn_total": 2119,
+   "burn_total": 2144,
    "burn_active": 454,
    "weight_lb": null
   },
@@ -2203,7 +2203,7 @@
      "fat": 17
     }
    ],
-   "burn_total": 2558,
+   "burn_total": 2816,
    "burn_active": 694,
    "weight_lb": null
   },
@@ -2254,7 +2254,7 @@
      "fat": 34
     }
    ],
-   "burn_total": 2660,
+   "burn_total": 2900,
    "burn_active": 538,
    "weight_lb": 158.6
   },
@@ -2296,8 +2296,8 @@
      "fat": 28
     }
    ],
-   "burn_total": 898,
-   "burn_active": 311,
+   "burn_total": 2221,
+   "burn_active": 465,
    "weight_lb": null
   },
   {
@@ -2305,15 +2305,14 @@
    "burn_complete": false,
    "intake": null,
    "meals": [],
-   "burn_total": 53,
-   "burn_active": null,
+   "burn_total": 152,
+   "burn_active": 4,
    "weight_lb": null
   }
  ],
  "workouts": [
   {
-   "id": "tcx-2026-11-13-1726",
-   "source": "tcx",
+   "id": "healthconnect_ac4ccf10-4d7f-3742-bcd0-16bbac1af88b",
    "type": "other",
    "date": "2026-11-13",
    "start": "17:26",
@@ -2321,8 +2320,7 @@
    "dur_min": 18,
    "hr_avg": 118,
    "hr_max": 167,
-   "distance_m": 560,
-   "tcx_kcal": 140,
+   "distance_m": 419,
    "hr_series": [
     [
      0,
@@ -4443,7 +4441,8 @@
     "vigorous": 5,
     "peak": 0
    },
-   "hr_source": "tcx"
+   "hr_source": "tcx",
+   "tcx_kcal": 140
   },
   {
    "id": "healthconnect_5afcac20-f894-32ce-b726-277139fd5379",
@@ -126972,8 +126971,8 @@
    ],
    [
     23,
-    54,
-    88
+    53,
+    68
    ]
   ],
   "2026-11-07": [
@@ -127685,39 +127684,94 @@
   ],
   "2026-11-13": [
    [
+    0,
+    52,
+    86
+   ],
+   [
+    1,
+    52,
+    75
+   ],
+   [
+    2,
+    52,
+    85
+   ],
+   [
+    3,
+    50,
+    79
+   ],
+   [
+    4,
+    52,
+    80
+   ],
+   [
     5,
-    73,
-    102
+    52,
+    82
    ],
    [
     6,
-    69,
-    89
+    70,
+    102
    ],
    [
     7,
-    77,
+    79,
     131
    ],
    [
     8,
-    72,
-    90
+    70,
+    95
    ],
    [
     9,
+    66,
+    107
+   ],
+   [
+    10,
     62,
     90
    ],
    [
-    10,
-    66,
-    85
+    11,
+    62,
+    77
+   ],
+   [
+    12,
+    63,
+    99
+   ],
+   [
+    13,
+    68,
+    94
+   ],
+   [
+    14,
+    68,
+    97
+   ],
+   [
+    15,
+    73,
+    126
+   ],
+   [
+    16,
+    64,
+    86
    ],
    [
     17,
-    74,
-    97
+    86,
+    167
    ],
    [
     18,
@@ -127726,17 +127780,17 @@
    ],
    [
     19,
-    69,
-    96
+    67,
+    95
    ],
    [
     20,
-    66,
+    68,
     106
    ],
    [
     21,
-    56,
+    58,
     82
    ]
   ]
