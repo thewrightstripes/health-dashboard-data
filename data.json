@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T23:44:49.293819+00:00",
+ "generated_at": "2026-11-15T01:44:50.107122+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2304,10 +2304,10 @@
    "date": "2026-11-14",
    "burn_complete": false,
    "intake": {
-    "cal": 1390,
-    "protein": 79,
-    "carbs": 85,
-    "fat": 76
+    "cal": 2625,
+    "protein": 129,
+    "carbs": 181,
+    "fat": 147
    },
    "meals": [
     {
@@ -2327,10 +2327,28 @@
      "protein": 73,
      "carbs": 72,
      "fat": 74
+    },
+    {
+     "time": "16:44",
+     "type": "dinner",
+     "summary": "Pork tacos with guacamole, cilantro and grilled onion, 2 large",
+     "cal": 820,
+     "protein": 44,
+     "carbs": 56,
+     "fat": 44
+    },
+    {
+     "time": "17:16",
+     "type": "snack",
+     "summary": "Guacamole (about 1/2 cup) with tortilla chips; Mexican corn salad, 1 tablespoon",
+     "cal": 415,
+     "protein": 6,
+     "carbs": 40,
+     "fat": 27
     }
    ],
-   "burn_total": 963,
-   "burn_active": 383,
+   "burn_total": 1226,
+   "burn_active": 579,
    "weight_lb": null
   }
  ],
@@ -127858,6 +127876,21 @@
     13,
     70,
     91
+   ],
+   [
+    14,
+    75,
+    113
+   ],
+   [
+    15,
+    67,
+    100
+   ],
+   [
+    16,
+    65,
+    96
    ]
   ]
  },
