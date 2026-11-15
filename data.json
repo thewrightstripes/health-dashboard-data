@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T17:44:47.562341+00:00",
+ "generated_at": "2026-11-15T19:44:49.124511+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2380,12 +2380,23 @@
      "fat": 7
     }
    ],
-   "burn_total": 670,
-   "burn_active": 118,
+   "burn_total": 1163,
+   "burn_active": 289,
    "weight_lb": null
   }
  ],
  "workouts": [
+  {
+   "id": "healthconnect_e9817110-c1d6-3531-84e9-ff85279086dc",
+   "type": "other",
+   "date": "2026-11-15",
+   "start": "08:48",
+   "end": "08:59",
+   "dur_min": 12,
+   "hr_avg": 127,
+   "hr_max": 152,
+   "distance_m": 235
+  },
   {
    "id": "tcx-2026-11-15-0813",
    "source": "tcx",
@@ -134898,6 +134909,26 @@
     7,
     68,
     111
+   ],
+   [
+    8,
+    126,
+    164
+   ],
+   [
+    9,
+    85,
+    125
+   ],
+   [
+    10,
+    70,
+    115
+   ],
+   [
+    11,
+    71,
+    98
    ]
   ]
  },
