@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T13:44:50.553095+00:00",
+ "generated_at": "2026-11-16T15:44:51.589311+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2032,7 +2032,7 @@
      "fat": 30
     }
    ],
-   "burn_total": 2555,
+   "burn_total": 2520,
    "burn_active": 694,
    "weight_lb": null
   },
@@ -2407,8 +2407,8 @@
      "fat": 44
     }
    ],
-   "burn_total": 2228,
-   "burn_active": 560,
+   "burn_total": 2883,
+   "burn_active": 689,
    "weight_lb": null
   },
   {
@@ -2416,35 +2416,33 @@
    "burn_complete": false,
    "intake": null,
    "meals": [],
-   "burn_total": 336,
-   "burn_active": null,
+   "burn_total": 424,
+   "burn_active": 49,
    "weight_lb": null
   }
  ],
  "workouts": [
   {
-   "id": "healthconnect_e9817110-c1d6-3531-84e9-ff85279086dc",
-   "type": "other",
+   "id": "healthconnect_9c681c6e-fe41-335c-b965-b6171fca3b70",
+   "type": "walking",
    "date": "2026-11-15",
-   "start": "08:48",
-   "end": "08:59",
-   "dur_min": 12,
-   "hr_avg": 127,
-   "hr_max": 152,
-   "distance_m": 235
+   "start": "09:00",
+   "end": "09:19",
+   "dur_min": 19,
+   "hr_avg": 109,
+   "hr_max": 128,
+   "distance_m": 195
   },
   {
-   "id": "tcx-2026-11-15-0813",
-   "source": "tcx",
+   "id": "healthconnect_2fcc5c5a-484e-3f98-9715-0c108b467df8",
    "type": "other",
    "date": "2026-11-15",
-   "start": "08:13",
-   "end": "08:43",
-   "dur_min": 31,
+   "start": "08:43",
+   "end": "09:00",
+   "dur_min": 17,
    "hr_avg": 146,
    "hr_max": 164,
-   "distance_m": null,
-   "tcx_kcal": null,
+   "distance_m": 356,
    "hr_series": [
     [
      0,
@@ -5650,6 +5648,17 @@
     "peak": 1
    },
    "hr_source": "tcx"
+  },
+  {
+   "id": "healthconnect_cff2d0bd-dd8a-3762-8848-b46003491353",
+   "type": "other",
+   "date": "2026-11-15",
+   "start": "08:12",
+   "end": "08:43",
+   "dur_min": 31,
+   "hr_avg": 145,
+   "hr_max": 164,
+   "distance_m": 794
   },
   {
    "id": "healthconnect_6a1eab00-5b52-3aaa-b62a-d894b5bc59c7",
@@ -134219,7 +134228,7 @@
    ],
    [
     23,
-    54,
+    58,
     98
    ]
   ],
@@ -134932,19 +134941,44 @@
   ],
   "2026-11-15": [
    [
+    0,
+    50,
+    74
+   ],
+   [
+    1,
+    52,
+    75
+   ],
+   [
+    2,
+    49,
+    63
+   ],
+   [
+    3,
+    50,
+    77
+   ],
+   [
+    4,
+    49,
+    74
+   ],
+   [
     5,
     50,
-    78
+    87
    ],
    [
     6,
-    68,
-    121
+    62,
+    94
    ],
    [
     7,
-    68,
-    111
+    65,
+    121
    ],
    [
     8,
@@ -134953,63 +134987,70 @@
    ],
    [
     9,
-    85,
-    125
+    91,
+    128
    ],
    [
     10,
-    70,
-    115
+    66,
+    99
    ],
    [
     11,
-    74,
-    98
+    73,
+    115
    ],
    [
     12,
-    77,
+    78,
     168
    ],
    [
     13,
-    74,
-    87
+    70,
+    101
    ],
    [
     14,
-    70,
-    94
+    76,
+    104
    ],
    [
     15,
-    60,
-    79
+    61,
+    94
    ],
    [
     16,
-    57,
+    58,
     95
    ],
    [
     17,
-    78,
-    126
+    67,
+    108
    ],
    [
     18,
-    87,
-    105
+    86,
+    126
    ],
    [
     19,
-    66,
+    73,
     133
    ],
    [
     20,
-    61,
+    59,
     75
+   ]
+  ],
+  "2026-11-16": [
+   [
+    5,
+    52,
+    83
    ]
   ]
  },
