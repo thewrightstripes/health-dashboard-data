@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T01:41:10.031951+00:00",
+ "generated_at": "2026-11-17T01:41:37.494479+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -21072,7 +21072,7 @@
   },
   {
    "id": "healthconnect_b64a5024-c4e7-39da-b0f0-4763671a6958",
-   "type": "strength_training",
+   "type": "other",
    "date": "2026-11-11",
    "start": "19:35",
    "end": "19:39",
@@ -39926,7 +39926,7 @@
   },
   {
    "id": "healthconnect_cc938eed-e9ff-3ca7-8ec2-07f3119267a1",
-   "type": "running_treadmill",
+   "type": "other",
    "date": "2026-11-07",
    "start": "09:21",
    "end": "09:31",
