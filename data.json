@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T01:44:48.453239+00:00",
+ "generated_at": "2026-11-17T03:44:48.401603+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2415,10 +2415,10 @@
    "date": "2026-11-16",
    "burn_complete": false,
    "intake": {
-    "cal": 1784,
-    "protein": 151,
-    "carbs": 108,
-    "fat": 78
+    "cal": 2176,
+    "protein": 158,
+    "carbs": 169,
+    "fat": 92
    },
    "meals": [
     {
@@ -2456,10 +2456,37 @@
      "protein": 7,
      "carbs": 17,
      "fat": 14
+    },
+    {
+     "time": "18:03",
+     "type": "snack",
+     "summary": "Orange juice, 8 oz",
+     "cal": 112,
+     "protein": 2,
+     "carbs": 26,
+     "fat": 1
+    },
+    {
+     "time": "19:33",
+     "type": "dinner",
+     "summary": null,
+     "cal": 145,
+     "protein": 3,
+     "carbs": 21,
+     "fat": 5
+    },
+    {
+     "time": "19:35",
+     "type": "dinner",
+     "summary": null,
+     "cal": 135,
+     "protein": 2,
+     "carbs": 14,
+     "fat": 8
     }
    ],
-   "burn_total": 1326,
-   "burn_active": 223,
+   "burn_total": 1475,
+   "burn_active": 307,
    "weight_lb": null
   }
  ],
@@ -134621,6 +134648,16 @@
     16,
     59,
     71
+   ],
+   [
+    17,
+    77,
+    119
+   ],
+   [
+    18,
+    94,
+    129
    ]
   ]
  },
