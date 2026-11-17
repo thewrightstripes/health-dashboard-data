@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T23:44:50.850154+00:00",
+ "generated_at": "2026-11-17T01:41:10.031951+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2458,8 +2458,8 @@
      "fat": 14
     }
    ],
-   "burn_total": 1083,
-   "burn_active": 184,
+   "burn_total": 1326,
+   "burn_active": 223,
    "weight_lb": null
   }
  ],
@@ -8502,7 +8502,7 @@
   },
   {
    "id": "healthconnect_2fcc5c5a-484e-3f98-9715-0c108b467df8",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-15",
    "start": "08:43",
    "end": "09:00",
@@ -15529,7 +15529,7 @@
   },
   {
    "id": "healthconnect_5afcac20-f894-32ce-b726-277139fd5379",
-   "type": "rowing",
+   "type": "rowing_machine",
    "date": "2026-11-12",
    "start": "17:49",
    "end": "18:08",
@@ -21061,7 +21061,7 @@
   },
   {
    "id": "healthconnect_19f6f7e0-d534-35cb-b93a-56c78cddd90d",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-12",
    "start": "17:19",
    "end": "17:48",
@@ -21072,7 +21072,7 @@
   },
   {
    "id": "healthconnect_b64a5024-c4e7-39da-b0f0-4763671a6958",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-11",
    "start": "19:35",
    "end": "19:39",
@@ -24696,7 +24696,7 @@
   },
   {
    "id": "healthconnect_b94895cf-7fdd-35aa-a701-c02b543bad9b",
-   "type": "rowing",
+   "type": "rowing_machine",
    "date": "2026-11-11",
    "start": "19:20",
    "end": "19:32",
@@ -24707,7 +24707,7 @@
   },
   {
    "id": "healthconnect_dd92db82-34e9-37f3-91eb-1b4367c748f5",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-11",
    "start": "19:05",
    "end": "19:20",
@@ -26930,7 +26930,7 @@
   },
   {
    "id": "healthconnect_49a2524c-0316-3d2a-867c-8f0d3a2c8f76",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-09",
    "start": "17:05",
    "end": "18:16",
@@ -39926,7 +39926,7 @@
   },
   {
    "id": "healthconnect_cc938eed-e9ff-3ca7-8ec2-07f3119267a1",
-   "type": "other",
+   "type": "running_treadmill",
    "date": "2026-11-07",
    "start": "09:21",
    "end": "09:31",
@@ -45150,7 +45150,7 @@
   },
   {
    "id": "healthconnect_5c1028d2-c802-365e-bbe4-acac8f218345",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-07",
    "start": "08:51",
    "end": "09:21",
@@ -45161,7 +45161,7 @@
   },
   {
    "id": "healthconnect_c722fa1c-6630-30ce-bbd0-525f03f209d4",
-   "type": "other",
+   "type": "running_treadmill",
    "date": "2026-11-07",
    "start": "08:45",
    "end": "08:51",
@@ -45172,7 +45172,7 @@
   },
   {
    "id": "healthconnect_ac4b3917-00c1-3947-9def-afac66f41ea1",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-05",
    "start": "20:00",
    "end": "21:05",
@@ -52844,7 +52844,7 @@
   },
   {
    "id": "healthconnect_356723b1-58c5-39e8-a30a-19b33288018c",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-03",
    "start": "19:00",
    "end": "20:00",
@@ -59960,7 +59960,7 @@
   },
   {
    "id": "healthconnect_bee2b2cb-44ac-3316-91c2-a6d2a8200c5b",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-11-01",
    "start": "08:41",
    "end": "09:01",
@@ -73713,7 +73713,7 @@
   },
   {
    "id": "healthconnect_cefb6ca2-d907-38ca-bcab-effd4bcb9956",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-10-31",
    "start": "08:33",
    "end": "08:43",
@@ -73724,7 +73724,7 @@
   },
   {
    "id": "healthconnect_cc92e3d6-9e48-3469-8ba8-90d9e361fc55",
-   "type": "rowing",
+   "type": "rowing_machine",
    "date": "2026-10-31",
    "start": "08:21",
    "end": "08:33",
@@ -73746,7 +73746,7 @@
   },
   {
    "id": "healthconnect_f7c18dcf-e572-38f4-9dfd-56c83593e59c",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-10-31",
    "start": "07:45",
    "end": "08:00",
@@ -79123,7 +79123,7 @@
   },
   {
    "id": "healthconnect_1f101ffe-96d8-3ad0-b01a-c81440239ec3",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-10-29",
    "start": "16:30",
    "end": "17:30",
@@ -90733,7 +90733,7 @@
   },
   {
    "id": "healthconnect_1c599e2b-a61c-33c4-8c7a-670fb786cdd9",
-   "type": "other",
+   "type": "biking_stationary",
    "date": "2026-10-27",
    "start": "20:26",
    "end": "20:46",
@@ -92866,7 +92866,7 @@
   },
   {
    "id": "healthconnect_098e8055-fa0a-380b-8357-2b8521878ba3",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-10-26",
    "start": "17:40",
    "end": "18:30",
@@ -98799,7 +98799,7 @@
   },
   {
    "id": "healthconnect_08ad660d-8f18-3112-9640-d719c91bd21f",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-10-25",
    "start": "15:28",
    "end": "15:38",
@@ -116042,7 +116042,7 @@
   },
   {
    "id": "healthconnect_b28cc230-1b09-39d1-82e1-39430f1f7ecf",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-10-21",
    "start": "20:19",
    "end": "20:30",
@@ -116053,7 +116053,7 @@
   },
   {
    "id": "healthconnect_fa21f6be-b3bd-3eda-8e4a-4e8aa6688ff8",
-   "type": "other",
+   "type": "biking_stationary",
    "date": "2026-10-21",
    "start": "20:06",
    "end": "20:16",
@@ -116064,7 +116064,7 @@
   },
   {
    "id": "healthconnect_bf96fcfe-93d8-3188-89aa-39ca31f853a9",
-   "type": "rowing",
+   "type": "rowing_machine",
    "date": "2026-10-21",
    "start": "19:54",
    "end": "20:04",
@@ -120714,7 +120714,7 @@
   },
   {
    "id": "healthconnect_ab442f44-4f9a-336c-8cd8-386e7a9b8181",
-   "type": "other",
+   "type": "strength_training",
    "date": "2026-10-19",
    "start": "19:40",
    "end": "19:56",
@@ -125514,7 +125514,7 @@
   },
   {
    "id": "healthconnect_67fbeb92-daa0-3e66-942f-b561e175cddb",
-   "type": "other",
+   "type": "biking_stationary",
    "date": "2026-10-18",
    "start": "08:48",
    "end": "09:18",
@@ -134604,8 +134604,23 @@
    ],
    [
     13,
-    63,
-    77
+    64,
+    74
+   ],
+   [
+    14,
+    60,
+    93
+   ],
+   [
+    15,
+    62,
+    97
+   ],
+   [
+    16,
+    59,
+    71
    ]
   ]
  },
