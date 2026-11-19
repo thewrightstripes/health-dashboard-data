@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-19T15:45:30.698482+00:00",
+ "generated_at": "2026-11-19T17:45:13.614319+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2203,7 +2203,7 @@
      "fat": 17
     }
    ],
-   "burn_total": 2816,
+   "burn_total": 2783,
    "burn_active": 694,
    "weight_lb": null
   },
@@ -2614,24 +2614,67 @@
      "fat": 16
     }
    ],
-   "burn_total": 1926,
-   "burn_active": 370,
+   "burn_total": 2323,
+   "burn_active": 491,
    "weight_lb": 159.4
   },
   {
    "date": "2026-11-19",
    "burn_complete": false,
-   "intake": null,
-   "meals": [],
-   "burn_total": 464,
-   "burn_active": 49,
-   "weight_lb": null
+   "intake": {
+    "cal": 980,
+    "protein": 61,
+    "carbs": 143,
+    "fat": 20
+   },
+   "meals": [
+    {
+     "time": "07:00",
+     "type": "breakfast",
+     "summary": null,
+     "cal": 110,
+     "protein": 6,
+     "carbs": 13,
+     "fat": 2
+    },
+    {
+     "time": "08:17",
+     "type": "breakfast",
+     "summary": null,
+     "cal": 620,
+     "protein": 45,
+     "carbs": 87,
+     "fat": 12
+    },
+    {
+     "time": "08:25",
+     "type": "snack",
+     "summary": null,
+     "cal": 250,
+     "protein": 10,
+     "carbs": 43,
+     "fat": 6
+    }
+   ],
+   "burn_total": 588,
+   "burn_active": 190,
+   "weight_lb": 159.8
   }
  ],
  "workouts": [
   {
-   "id": "tcx-2026-11-18-0748",
-   "source": "tcx",
+   "id": "healthconnect_83c9d305-65cb-362a-948b-2e9d4dc18031",
+   "type": "walking",
+   "date": "2026-11-18",
+   "start": "17:01",
+   "end": "17:19",
+   "dur_min": 18,
+   "hr_avg": 89,
+   "hr_max": 123,
+   "distance_m": 855
+  },
+  {
+   "id": "healthconnect_9cd5df8b-34bf-3a9a-8dc5-71fd50eafa84",
    "type": "walking",
    "date": "2026-11-18",
    "start": "07:48",
@@ -2639,8 +2682,7 @@
    "dur_min": 17,
    "hr_avg": 84,
    "hr_max": 105,
-   "distance_m": null,
-   "tcx_kcal": null,
+   "distance_m": 881,
    "hr_series": [
     [
      0,
@@ -139522,7 +139564,7 @@
    ],
    [
     23,
-    50,
+    51,
     75
    ]
   ],
@@ -140235,24 +140277,54 @@
   ],
   "2026-11-18": [
    [
-    5,
+    0,
+    52,
+    69
+   ],
+   [
+    1,
+    49,
+    75
+   ],
+   [
+    2,
     51,
-    73
+    85
+   ],
+   [
+    3,
+    51,
+    78
+   ],
+   [
+    4,
+    50,
+    71
+   ],
+   [
+    5,
+    52,
+    77
    ],
    [
     6,
-    72,
-    95
+    53,
+    65
+   ],
+   [
+    7,
+    74,
+    106
    ],
    [
     8,
-    64,
+    66,
     111
    ],
    [
     9,
-    65,
-    78
+    64,
+    84
    ],
    [
     10,
@@ -140261,22 +140333,22 @@
    ],
    [
     11,
-    56,
+    55,
     78
    ],
    [
     12,
-    73,
-    122
+    65,
+    103
    ],
    [
     13,
-    75,
-    89
+    76,
+    122
    ],
    [
     14,
-    66,
+    67,
     88
    ],
    [
@@ -140286,23 +140358,43 @@
    ],
    [
     16,
-    61,
-    80
+    62,
+    87
    ],
    [
     17,
-    83,
-    111
+    86,
+    123
    ],
    [
     18,
-    76,
+    80,
     101
    ],
    [
     19,
-    67,
+    65,
     114
+   ],
+   [
+    20,
+    68,
+    96
+   ],
+   [
+    21,
+    54,
+    81
+   ],
+   [
+    22,
+    52,
+    84
+   ],
+   [
+    23,
+    51,
+    73
    ]
   ],
   "2026-11-19": [
@@ -140315,6 +140407,11 @@
     6,
     73,
     98
+   ],
+   [
+    7,
+    71,
+    91
    ]
   ]
  },
