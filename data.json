@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-20T01:45:24.722402+00:00",
+ "generated_at": "2026-11-20T03:45:09.847767+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2622,10 +2622,10 @@
    "date": "2026-11-19",
    "burn_complete": false,
    "intake": {
-    "cal": 1860,
-    "protein": 94,
-    "carbs": 212,
-    "fat": 73
+    "cal": 2520,
+    "protein": 145,
+    "carbs": 239,
+    "fat": 112
    },
    "meals": [
     {
@@ -2663,10 +2663,19 @@
      "protein": 33,
      "carbs": 69,
      "fat": 53
+    },
+    {
+     "time": "18:47",
+     "type": "dinner",
+     "summary": null,
+     "cal": 660,
+     "protein": 51,
+     "carbs": 27,
+     "fat": 39
     }
    ],
-   "burn_total": 1186,
-   "burn_active": 226,
+   "burn_total": 1711,
+   "burn_active": 304,
    "weight_lb": 159.8
   }
  ],
@@ -140456,6 +140465,16 @@
     15,
     60,
     79
+   ],
+   [
+    16,
+    84,
+    138
+   ],
+   [
+    17,
+    137,
+    166
    ]
   ]
  },
