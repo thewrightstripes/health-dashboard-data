@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T15:44:55.416739+00:00",
+ "generated_at": "2026-11-21T17:45:08.814936+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2296,7 +2296,7 @@
      "fat": 28
     }
    ],
-   "burn_total": 2236,
+   "burn_total": 2203,
    "burn_active": 465,
    "weight_lb": null
   },
@@ -2680,7 +2680,7 @@
   },
   {
    "date": "2026-11-20",
-   "burn_complete": false,
+   "burn_complete": true,
    "intake": {
     "cal": 2794,
     "protein": 196,
@@ -2743,12 +2743,67 @@
      "fat": 20
     }
    ],
-   "burn_total": 1795,
-   "burn_active": 681,
+   "burn_total": 2401,
+   "burn_active": 814,
    "weight_lb": 158.2
+  },
+  {
+   "date": "2026-11-21",
+   "burn_complete": false,
+   "intake": {
+    "cal": 250,
+    "protein": 34,
+    "carbs": 16,
+    "fat": 3
+   },
+   "meals": [
+    {
+     "time": "07:00",
+     "type": "breakfast",
+     "summary": null,
+     "cal": 110,
+     "protein": 6,
+     "carbs": 13,
+     "fat": 2
+    },
+    {
+     "time": "08:30",
+     "type": "breakfast",
+     "summary": null,
+     "cal": 140,
+     "protein": 28,
+     "carbs": 3,
+     "fat": 1
+    }
+   ],
+   "burn_total": 334,
+   "burn_active": 70,
+   "weight_lb": null
   }
  ],
  "workouts": [
+  {
+   "id": "healthconnect_78738ffc-a6c0-333a-8e74-7c3a4162e04b",
+   "type": "other",
+   "date": "2026-11-21",
+   "start": "07:28",
+   "end": "07:43",
+   "dur_min": 15,
+   "hr_avg": 118,
+   "hr_max": 161,
+   "distance_m": 165
+  },
+  {
+   "id": "healthconnect_dc012d9a-f966-3770-82db-acaa9cea124a",
+   "type": "walking",
+   "date": "2026-11-20",
+   "start": "18:10",
+   "end": "18:20",
+   "dur_min": 10,
+   "hr_avg": 93,
+   "hr_max": 137,
+   "distance_m": 520
+  },
   {
    "id": "healthconnect_c42a7b83-44db-3e60-ab5a-3c6bfeb61a44",
    "type": "other",
@@ -140606,78 +140661,100 @@
   "2026-11-20": [
    [
     7,
-    78,
+    80,
     128
    ],
    [
     8,
-    59,
-    71
+    64,
+    95
    ],
    [
     9,
-    62,
+    60,
     89
    ],
    [
     10,
     56,
-    72
+    81
    ],
    [
     11,
-    59,
+    52,
     93
    ],
    [
     12,
-    62,
+    65,
     91
    ],
    [
     13,
-    62,
-    86
+    61,
+    97
    ],
    [
     14,
-    61,
+    64,
     110
    ],
    [
     15,
-    68,
-    86
+    62,
+    93
    ],
    [
     16,
-    72,
+    70,
     107
    ],
    [
     17,
     64,
-    137
+    112
    ],
    [
     18,
-    76,
-    125
+    74,
+    137
    ],
    [
     19,
-    70,
-    101
+    77,
+    121
    ],
    [
     20,
     68,
-    122
+    101
    ],
    [
     21,
-    76,
-    99
+    65,
+    122
+   ],
+   [
+    22,
+    53,
+    78
+   ],
+   [
+    23,
+    53,
+    86
+   ]
+  ],
+  "2026-11-21": [
+   [
+    7,
+    119,
+    161
+   ],
+   [
+    8,
+    109,
+    128
    ]
   ]
  },
