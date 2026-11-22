@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-22T17:45:09.369030+00:00",
+ "generated_at": "2026-11-22T19:45:00.740403+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2810,14 +2810,58 @@
   {
    "date": "2026-11-22",
    "burn_complete": false,
-   "intake": null,
-   "meals": [],
-   "burn_total": 565,
-   "burn_active": 142,
-   "weight_lb": null
+   "intake": {
+    "cal": 970,
+    "protein": 96,
+    "carbs": 44,
+    "fat": 42
+   },
+   "meals": [
+    {
+     "time": "08:00",
+     "type": "breakfast",
+     "summary": null,
+     "cal": 110,
+     "protein": 6,
+     "carbs": 13,
+     "fat": 2
+    },
+    {
+     "time": "09:30",
+     "type": "breakfast",
+     "summary": null,
+     "cal": 140,
+     "protein": 28,
+     "carbs": 3,
+     "fat": 1
+    },
+    {
+     "time": "11:42",
+     "type": "lunch",
+     "summary": null,
+     "cal": 720,
+     "protein": 62,
+     "carbs": 28,
+     "fat": 39
+    }
+   ],
+   "burn_total": 865,
+   "burn_active": 201,
+   "weight_lb": 159.4
   }
  ],
  "workouts": [
+  {
+   "id": "healthconnect_9d50733d-2065-3006-8035-1ff1363b87e2",
+   "type": "other",
+   "date": "2026-11-22",
+   "start": "09:09",
+   "end": "09:29",
+   "dur_min": 20,
+   "hr_avg": 117,
+   "hr_max": 133,
+   "distance_m": 847
+  },
   {
    "id": "healthconnect_841ae099-6edf-3a50-9b31-29849512e7ce",
    "type": "other",
@@ -140907,8 +140951,18 @@
    ],
    [
     8,
-    79,
-    104
+    90,
+    129
+   ],
+   [
+    10,
+    100,
+    129
+   ],
+   [
+    11,
+    63,
+    90
    ]
   ]
  },
