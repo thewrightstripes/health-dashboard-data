@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-23T15:45:13.385959+00:00",
+ "generated_at": "2026-11-23T17:45:27.208586+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -2407,7 +2407,7 @@
      "fat": 44
     }
    ],
-   "burn_total": 2884,
+   "burn_total": 2851,
    "burn_active": 689,
    "weight_lb": null
   },
@@ -2863,31 +2863,55 @@
      "fat": 13
     }
    ],
-   "burn_total": 2035,
-   "burn_active": 643,
+   "burn_total": 2774,
+   "burn_active": 739,
    "weight_lb": 159.4
   },
   {
    "date": "2026-11-23",
    "burn_complete": false,
-   "intake": null,
-   "meals": [],
-   "burn_total": 461,
-   "burn_active": 44,
+   "intake": {
+    "cal": 310,
+    "protein": 18,
+    "carbs": 37,
+    "fat": 9
+   },
+   "meals": [
+    {
+     "time": "08:00",
+     "type": "breakfast",
+     "summary": null,
+     "cal": 110,
+     "protein": 6,
+     "carbs": 13,
+     "fat": 2
+    },
+    {
+     "time": "09:18",
+     "type": "breakfast",
+     "summary": null,
+     "cal": 200,
+     "protein": 12,
+     "carbs": 24,
+     "fat": 7
+    }
+   ],
+   "burn_total": 621,
+   "burn_active": 173,
    "weight_lb": null
   }
  ],
  "workouts": [
   {
-   "id": "healthconnect_9d50733d-2065-3006-8035-1ff1363b87e2",
-   "type": "other",
+   "id": "healthconnect_ce6c6030-9f64-3b2e-93a0-2e945d625dee",
+   "type": "strength_training",
    "date": "2026-11-22",
-   "start": "09:09",
-   "end": "09:29",
-   "dur_min": 20,
+   "start": "09:49",
+   "end": "10:06",
+   "dur_min": 17,
    "hr_avg": 111,
    "hr_max": 185,
-   "distance_m": 847,
+   "distance_m": 372,
    "hr_series": [
     [
      0,
@@ -10381,6 +10405,39 @@
     "peak": 12
    },
    "hr_source": "tcx"
+  },
+  {
+   "id": "healthconnect_8ee4c2c4-386e-3929-bace-4934bb891a3d",
+   "type": "rowing_machine",
+   "date": "2026-11-22",
+   "start": "09:30",
+   "end": "09:40",
+   "dur_min": 10,
+   "hr_avg": 129,
+   "hr_max": 185,
+   "distance_m": 42
+  },
+  {
+   "id": "healthconnect_9d50733d-2065-3006-8035-1ff1363b87e2",
+   "type": "other",
+   "date": "2026-11-22",
+   "start": "09:09",
+   "end": "09:29",
+   "dur_min": 20,
+   "hr_avg": 117,
+   "hr_max": 133,
+   "distance_m": 847
+  },
+  {
+   "id": "healthconnect_32496bb2-1321-3697-8172-ad2d1495f061",
+   "type": "strength_training",
+   "date": "2026-11-22",
+   "start": "08:50",
+   "end": "09:09",
+   "dur_min": 19,
+   "hr_avg": 80,
+   "hr_max": 106,
+   "distance_m": 323
   },
   {
    "id": "healthconnect_841ae099-6edf-3a50-9b31-29849512e7ce",
@@ -150630,7 +150687,7 @@
    ],
    [
     23,
-    55,
+    57,
     84
    ]
   ],
@@ -151273,53 +151330,63 @@
   ],
   "2026-11-22": [
    [
+    0,
+    50,
+    88
+   ],
+   [
     1,
     48,
-    66
+    68
    ],
    [
     2,
     46,
-    73
+    62
    ],
    [
     3,
     48,
-    71
+    73
    ],
    [
     4,
-    47,
-    76
+    46,
+    69
    ],
    [
     5,
-    48,
+    49,
     83
    ],
    [
     6,
-    50,
+    49,
     78
    ],
    [
     8,
-    90,
-    129
+    80,
+    106
+   ],
+   [
+    9,
+    118,
+    185
    ],
    [
     10,
-    100,
-    129
+    104,
+    141
    ],
    [
     11,
-    80,
+    74,
     127
    ],
    [
     12,
-    68,
+    70,
     112
    ],
    [
@@ -151328,18 +151395,23 @@
     71
    ],
    [
+    14,
+    60,
+    100
+   ],
+   [
     15,
-    66,
+    67,
     95
    ],
    [
     16,
-    71,
+    68,
     93
    ],
    [
     17,
-    70,
+    71,
     106
    ],
    [
@@ -151349,7 +151421,7 @@
    ],
    [
     19,
-    75,
+    68,
     138
    ],
    [
@@ -151359,8 +151431,18 @@
    ],
    [
     21,
-    100,
+    66,
     113
+   ],
+   [
+    22,
+    54,
+    83
+   ],
+   [
+    23,
+    52,
+    66
    ]
   ],
   "2026-11-23": [
@@ -151368,6 +151450,11 @@
     5,
     54,
     78
+   ],
+   [
+    7,
+    69,
+    93
    ]
   ]
  },
