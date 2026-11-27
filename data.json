@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T19:45:16.142056+00:00",
+ "generated_at": "2026-11-27T21:45:18.953963+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -3199,8 +3199,8 @@
      "fat": 36
     }
    ],
-   "burn_total": 783,
-   "burn_active": 166,
+   "burn_total": 928,
+   "burn_active": 247,
    "weight_lb": null
   }
  ],
@@ -153394,6 +153394,16 @@
     9,
     64,
     94
+   ],
+   [
+    10,
+    66,
+    96
+   ],
+   [
+    11,
+    59,
+    70
    ]
   ]
  },
