@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-28T15:45:07.141874+00:00",
+ "generated_at": "2026-11-28T17:45:04.575607+00:00",
  "timezone": "America/Los_Angeles",
  "targets": {
   "cal": 2400,
@@ -3241,12 +3241,45 @@
      "fat": 14
     }
    ],
-   "burn_total": null,
-   "burn_active": null,
+   "burn_total": 689,
+   "burn_active": 97,
    "weight_lb": null
   }
  ],
  "workouts": [
+  {
+   "id": "healthconnect_9487bc5d-df42-39c1-8a79-9b0273703ab3",
+   "type": "other",
+   "date": "2026-11-28",
+   "start": "08:30",
+   "end": "08:48",
+   "dur_min": 18,
+   "hr_avg": 135,
+   "hr_max": 172,
+   "distance_m": 168
+  },
+  {
+   "id": "healthconnect_04af4780-6f2f-39d4-bc0b-395df62a7f83",
+   "type": "rowing",
+   "date": "2026-11-28",
+   "start": "08:18",
+   "end": "08:26",
+   "dur_min": 8,
+   "hr_avg": 149,
+   "hr_max": 177,
+   "distance_m": 13
+  },
+  {
+   "id": "healthconnect_39d809db-136a-3deb-b58b-45319606a581",
+   "type": "other",
+   "date": "2026-11-28",
+   "start": "08:03",
+   "end": "08:13",
+   "dur_min": 10,
+   "hr_avg": 126,
+   "hr_max": 139,
+   "distance_m": 474
+  },
   {
    "id": "healthconnect_987575bc-8b04-3afe-87e9-b17887cd3699",
    "type": "walking",
@@ -153536,6 +153569,23 @@
     23,
     57,
     79
+   ]
+  ],
+  "2026-11-28": [
+   [
+    6,
+    65,
+    99
+   ],
+   [
+    7,
+    90,
+    167
+   ],
+   [
+    8,
+    127,
+    177
    ]
   ]
  },
